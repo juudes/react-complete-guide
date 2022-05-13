@@ -1,4 +1,4 @@
-import Card from "./Card";
+import Card from "../SharedUI/Card";
 import ExpenseItem from "./ExpenseItem";
 
 import "./Expenses.css";
