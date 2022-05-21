@@ -1,11 +1,26 @@
+import React, { useState } from "react";
+
 import Card from "../SharedUI/Card";
 import ExpenseItem from "./ExpenseItem";
+import ExpensesFilter from "./ExpensesFilter";
 
 import "./Expenses.css";
 
 const Expenses = (props) => {
+  const [selectedYear, setSelectedYear] = useState("2020");
+
+  const onYearSelectedHandler = (year) => {
+    setSelectedYear(year);
+    console.log("expenses js");
+    console.log(year);
+  };
+
   return (
     <Card className="expenses">
+      <ExpensesFilter
+        selected={selectedYear}
+        onYearSelected={onYearSelectedHandler}
+      />
       <ExpenseItem
         title={props.expenses[0].title}
         amount={props.expenses[0].amount}
@@ -28,6 +43,6 @@ const Expenses = (props) => {
       />
     </Card>
   );
-}
+};
 
 export default Expenses;
