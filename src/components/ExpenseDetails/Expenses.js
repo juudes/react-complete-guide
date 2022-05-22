@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 import Card from "../SharedUI/Card";
-import ExpenseItem from "./ExpenseItem";
 import ExpensesFilter from "./ExpensesFilter";
+import ExpensesList from "./ExpensesList";
 
 import "./Expenses.css";
 
@@ -11,26 +11,11 @@ const Expenses = (props) => {
 
   const onYearSelectedHandler = (year) => {
     setSelectedYear(year);
-    console.log("expenses js");
-    console.log(year);
-    // props.onYearSelected(year);
   };
 
   const filteredExpenses = props.expenses.filter(
     (expense) => expense.date.getFullYear().toString() === selectedYear
   );
-
-  let expensesContent = <p>No Expenses Found.</p>;
-  if (filteredExpenses.length > 0) {
-    expensesContent = filteredExpenses.map((expense) => (
-      <ExpenseItem
-        key={expense.id}
-        title={expense.title}
-        amount={expense.amount}
-        date={expense.date}
-      />
-    ));
-  }
 
   return (
     <Card className="expenses">
@@ -38,7 +23,7 @@ const Expenses = (props) => {
         selected={selectedYear}
         onYearSelected={onYearSelectedHandler}
       />
-      {expensesContent}
+      <ExpensesList expenses={filteredExpenses} />
     </Card>
   );
 };
